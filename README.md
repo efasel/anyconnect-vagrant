@@ -27,9 +27,22 @@ e.g. `./vpn-down.sh`
 
 ## Dependencies
 
-* sshuttle
+### Vagrant
 
-Ubuntu: you might need to compile your own up-to-date version of sshuttle and specify the path to that binary 
+The VM is created and configured via Vagrant. Download it here: [Downloads | Vagrant by HashiCorp](https://www.vagrantup.com/downloads.html)
+
+### VirtualBox
+
+The VM runs in VirtualBox. Download it here:
+
+* [Downloads – Oracle VM VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* [VirtualBox 6.1.10 Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads#VirtualBox6.1.10OracleVMVirtualBoxExtensionPack)
+
+### sshuttle
+
+* [sshuttle/sshuttle: Transparent proxy server that works as a poor man's VPN. Forwards over ssh. Doesn't require admin. Works with Linux and MacOS. Supports DNS tunneling.](https://github.com/sshuttle/sshuttle)
+
+**Ubuntu**: you need to compile your own up-to-date version of sshuttle and specify the path to that binary 
 in `forward.sh`
 
 ## To configure
