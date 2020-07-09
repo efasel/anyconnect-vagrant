@@ -35,7 +35,7 @@ vpn_verify() {
     echo -n "Checking profile $VPN_PROFILE exists..."
     if [[ ! -f "/opt/cisco/anyconnect/profile/$VPN_PROFILE.xml" ]]; then
         echo -e "${_RED}FAILED${_NC}"
-        echo "Profile $VPN_PROFILE was not found - please connect once via '$_CISCO_VPN -s connect vpn.springernature.com' to download this"
+        echo "Profile $VPN_PROFILE was not found - please connect once via '$_CISCO_VPN' to download this"
         RESULT=1
     else 
         echo -e "${_GREEN}OK${_NC}"
@@ -47,17 +47,17 @@ vpn_verify() {
 verify_prerequisites() {
     if [[ ! -f "$_CISCO_VPN" ]]; then
         echo "Cannot find AnyConnect at $_CISCO_VPN - please ensure you've installed it."
-        echo "You can download binaries from https://anyconnect.springernature.com"
         return 1
     fi
 }
 
 verify_user_pass() {
-    local VPN_USERNAME="${1:-}"
-    local VPN_PASSWORD="${2:-}"
+    local VPN_PROFILE="${1:-}"
+    local VPN_USERNAME="${2:-}"
+    local VPN_PASSWORD="${3:-}"
 
-    if [[ -z "$VPN_USERNAME" || -z "$VPN_PASSWORD" ]]; then
-        echo "Error: you must provide VPN username/password as arguments!"
+    if [[ -z "$VPN_PROFILE" || -z "$VPN_USERNAME" || -z "$VPN_PASSWORD" ]]; then
+        echo "Error: you must provide VPN profile name, username and password as arguments!"
         exit 1
     fi
 }
@@ -67,21 +67,20 @@ main() {
 
     verify_prerequisites
 
-    local VPN_USERNAME="${2:-}"
-    local VPN_PASSWORD="${3:-}"
-
-    local VPN_PROFILE="SpringerNature-Int"
+    local VPN_PROFILE="${2:-}"
+    local VPN_USERNAME="${3:-}"
+    local VPN_PASSWORD="${4:-}"
 
     case "$ACTION" in
     up)
-        verify_user_pass "$VPN_USERNAME" "$VPN_PASSWORD"
+        verify_user_pass "$VPN_PROFILE" "$VPN_USERNAME" "$VPN_PASSWORD"
         vpn_up "$VPN_PROFILE" "$VPN_USERNAME" "$VPN_PASSWORD"
         ;;
     down)
         vpn_down
         ;;
     verify)
-        verify_user_pass "$VPN_USERNAME" "$VPN_PASSWORD"
+        verify_user_pass "$VPN_PROFILE" "$VPN_USERNAME" "$VPN_PASSWORD"
         vpn_verify "$VPN_PROFILE" "$VPN_USERNAME"
         ;;
     *)

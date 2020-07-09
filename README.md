@@ -7,12 +7,12 @@ To establish or tear down the VPN connection you can use the following scripts:
 
 ## `vpn-up.sh`
 
-e.g. `./vpn-up.sh {username} {password}`
+e.g. `./vpn-up.sh {profile name} {username} {password}`
 
 * creates and provisions the VM (only on the first run)
 * starts the VM if not running
 * establishes the VPN connection
-* forwards traffic through the VPN
+* forwards traffic through the VPN (will ask for root password to do this)
 
 ## `vpn-down.sh`
 

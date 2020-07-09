@@ -3,8 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-if [[ -z "${1:-}" || -z "${2:-}" ]]; then
-    echo "Error: you must provide VPN username/password as arguments!"
+if [[ -z "${1:-}" || -z "${2:-}" || -z "${3:-}" ]]; then
+    echo "Error: you must provide VPN profile name, username and password as arguments!"
     exit 1
 fi
 
@@ -14,7 +14,7 @@ if [ "$VM_STATUS" != "running" ]; then
 fi
 
 vagrant ssh-config > .ssh_config_vagrant
-ssh -F .ssh_config_vagrant default "/vagrant/connect.sh up $1 $2"
+ssh -F .ssh_config_vagrant default "/vagrant/connect.sh up $1 $2 $3"
 
 echo "setting up traffic forwarding"
 ./forward.sh
