@@ -1,0 +1,5 @@
+.idea
+*.iml
+*.pid
+.vagrant
+.ssh_config_vagrant
