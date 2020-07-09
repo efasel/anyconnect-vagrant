@@ -1,7 +1,7 @@
 # About anyconnect-vagrant
 This project allows Cisco Anyconnect and Traps/Cortex to run in a VM using Vagrant. 
 
-Currently all DNS traffic is sent through the VPN.
+Currently, all DNS traffic is sent through the VPN.
 
 To establish or tear down the VPN connection you can use the following scripts:
 
@@ -18,7 +18,7 @@ e.g. `./vpn-up.sh {username} {password}`
 
 e.g. `./vpn-down.sh`
 
-* stop forwarding of the traffif
+* stop forwarding of the traffic
 * tear down the VPN connection
 
 ## `vpn-state.sh`
