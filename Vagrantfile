@@ -60,8 +60,11 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
+  vmhostname = `hostname`.strip+"-anyconnect"
+  config.vm.define vmhostname # name in Vagrant (instead of "default")
+  config.vm.hostname = vmhostname # name of host inside the VM: /etc/hostname
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "anyconnect-vagrant"
+    vb.name = vmhostname # name in virtualbox
 #    vb.gui = true
     vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
     vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]

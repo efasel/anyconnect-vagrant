@@ -14,7 +14,8 @@ if [ "$VM_STATUS" != "running" ]; then
 fi
 
 vagrant ssh-config > .ssh_config_vagrant
-ssh -F .ssh_config_vagrant default "/vagrant/connect.sh up $1 $2 $3"
+VMNAME=$(vagrant status --machine-readable | head -n 1 | awk -F, '{ print $2 }')
+ssh -F .ssh_config_vagrant $VMNAME "/vagrant/connect.sh up $1 $2 $3"
 
 echo "setting up traffic forwarding"
 ./forward.sh
