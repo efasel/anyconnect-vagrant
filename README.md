@@ -1,11 +1,17 @@
 # About anyconnect-vagrant
-This project allows Cisco Anyconnect and Traps/Cortex to run in a VM using Vagrant. 
+This project allows Cisco Anyconnect and Traps/Cortex to run in a VM using Vagrant.
+
+**Please note: you need to stay logged in into the VM as long as you want to use the VPN.
+On logout the VPN connection is automatically disconnected!** 
 
 Currently, all DNS traffic is sent through the VPN.
 
 To establish or tear down the VPN connection you can use the following scripts:
 
 ## `vpn-up.sh`
+
+This script has to be executed locally on the host. But it only works if you are otherwise logged in
+into the VM.
 
 e.g. `./vpn-up.sh {profile name} {username} {password}`
 
@@ -14,7 +20,28 @@ e.g. `./vpn-up.sh {profile name} {username} {password}`
 * establishes the VPN connection
 * forwards traffic through the VPN (will ask for root password to do this)
 
+If this does not work (e.g. you are not logged in into the VM), you can use the following sub tasks:
+
+### `connect.sh`
+
+This script has to be executed on the VM itself. Therefore:
+
+1. `vagrant ssh`: log in into the VM
+1. `/vagrant/connect.sh up {profile name} {username} {password}`
+
+This establishes the VPN connection. But no traffic is forwarded yet to the VPN.
+
+### `forward.sh`
+
+This script has to be executed locally on the host.
+
+1. `./forward.sh`
+
+Forward traffic from the host to the VPN. 
+
 ## `vpn-down.sh`
+
+This script has to be executed locally on the host.
 
 e.g. `./vpn-down.sh`
 
@@ -22,6 +49,8 @@ e.g. `./vpn-down.sh`
 * tear down the VPN connection
 
 ## `vpn-state.sh`
+
+This script has to be executed locally on the host.
 
 * check the current state of the VPN connection
 
