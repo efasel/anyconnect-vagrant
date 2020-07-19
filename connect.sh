@@ -3,6 +3,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+readonly _VPNCONFIG="/vagrant/vpnconfig"
 readonly _CISCO_VPN="/opt/cisco/anyconnect/bin/vpn"
 readonly _GREEN='\033[0;32m'
 readonly _RED='\033[0;31m'
@@ -46,7 +47,12 @@ vpn_verify() {
 
 verify_prerequisites() {
     if [[ ! -f "$_CISCO_VPN" ]]; then
-        echo "Cannot find AnyConnect at $_CISCO_VPN - please ensure you've installed it."
+        echo "Cannot find AnyConnect at $_CISCO_VPN – please ensure you've installed it."
+        return 1
+    fi
+
+    if [[ ! -f "$_VPNCONFIG" ]]; then
+        echo "Cannot find VPN configuration at $_VPNCONFIG (host OS: $(basename $_VPNCONFIG)) – please ensure you've created it according to the documentation."
         return 1
     fi
 }
