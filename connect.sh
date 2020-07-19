@@ -73,9 +73,12 @@ main() {
 
     verify_prerequisites
 
-    local VPN_PROFILE=$(sed -n '1p' /vagrant/vpnconfig)
-    local VPN_USERNAME=$(sed -n '2p' /vagrant/vpnconfig)
-    local VPN_PASSWORD=$(sed -n '3p' /vagrant/vpnconfig)
+    local VPN_PROFILE
+    VPN_PROFILE=$(sed -n '1p' /vagrant/vpnconfig)
+    local VPN_USERNAME
+    VPN_USERNAME=$(sed -n '2p' /vagrant/vpnconfig)
+    local VPN_PASSWORD
+    VPN_PASSWORD=$(sed -n '3p' /vagrant/vpnconfig)
 
     case "$ACTION" in
     up)
