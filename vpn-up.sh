@@ -10,7 +10,8 @@ fi
 
 VM_STATUS=$(vagrant status --machine-readable | grep ",state,"  | awk -F, '{print $4}')
 if [ "$VM_STATUS" != "running" ]; then
-  vagrant up
+  echo "please first log in into the VM: ./vm-login.sh"
+  exit 1
 fi
 
 vagrant ssh-config > .ssh_config_vagrant

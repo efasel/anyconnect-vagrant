@@ -6,27 +6,78 @@ On logout the VPN connection is automatically disconnected!**
 
 Currently, all DNS traffic is sent through the VPN.
 
-To establish or tear down the VPN connection you can use the following scripts:
+The usual steps you would take are the following:
 
-## `vpn-up.sh`
+1. launch the VM, log in **and stay logged in**
+1. connect and disconnect the VPN as needed
+1. halt the VM
 
-This script has to be executed locally on the host. But it only works if you are otherwise logged in
-into the VM.
+## initial usage
 
-e.g. `./vpn-up.sh {profile name} {username} {password}`
+This "initial usage" **should** be necessary only once!
+
+1. log in
+1. connect manually
+
+### log in
+
+`./vm-login.sh`
+
+### connect manually
+
+Start `/opt/cisco/anyconnect/bin/vpn` and then execute `connect {profile name}` 
+
+## normal usage
+
+### launch the VM, log in and stay logged in
+
+`./vm-login.sh`
 
 * creates and provisions the VM (only on the first run)
 * starts the VM if not running
+* log in
+
+### connect and disconnect as needed
+
+#### connect to VPN
+
+`./vpn-up.sh {profile name} {username} {password}`
+
 * establishes the VPN connection
 * forwards traffic through the VPN (will ask for root password to do this)
 
-If this does not work (e.g. you are not logged in into the VM), you can use the following sub tasks:
+#### check VPN state
+
+`./vpn-state.sh`
+
+* shows status of
+  * VPN
+  * forwarding
+
+#### disconnect from VPN
+
+`./vpn-down.sh`
+
+* stop forwarding of the traffic
+* disconnects from the VPN
+
+### halt the VM
+
+`./vm-shutdown.sh`
+
+* stop forwarding of the traffic
+* disconnects from the VPN
+* halts the VM
+
+## Troubleshooting
+
+If things go wrong try this:
 
 ### `connect.sh`
 
 This script has to be executed on the VM itself. Therefore:
 
-1. `vagrant ssh`: log in into the VM
+1. `./vm-login.sh`: log in into the VM
 1. `/vagrant/connect.sh up {profile name} {username} {password}`
 
 This establishes the VPN connection. But no traffic is forwarded yet to the VPN.
@@ -35,24 +86,9 @@ This establishes the VPN connection. But no traffic is forwarded yet to the VPN.
 
 This script has to be executed locally on the host.
 
-1. `./forward.sh`
+`./forward.sh`
 
 Forward traffic from the host to the VPN. 
-
-## `vpn-down.sh`
-
-This script has to be executed locally on the host.
-
-e.g. `./vpn-down.sh`
-
-* stop forwarding of the traffic
-* tear down the VPN connection
-
-## `vpn-state.sh`
-
-This script has to be executed locally on the host.
-
-* check the current state of the VPN connection
 
 ## Dependencies
 
@@ -80,7 +116,7 @@ in `forward.sh`
 * Obtain the "Traps/Cortex" debian linux installer. Place in the file 'packages/cortex.deb' directory. 
 * The routes which forwarded through the VPN are currently hardcoded in `forward.sh`
 
-## Disclaimer
+# Disclaimer
 
 This project is for informational use only. Do not use it to bypass your company procedures or security policies. 
 Use at your own risk. I can offer no support for this project. 
