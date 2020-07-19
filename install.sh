@@ -16,5 +16,8 @@ bash -c "sudo mkdir -p /usr/share/icons/hicolor/{48x48,64x64,96x96,128x128,256x2
 cd ~/anyconnect/vpn
 yes | ./vpn_install.sh 2 > /dev/null || true
 
+cd ~/anyconnect/posture
+yes | ./posture_install.sh 2 > /dev/null || true
+
 mv /opt/.cisco/certificates/ca /opt/.cisco/certificates/ca.orig
 ln -sf /etc/ssl/certs/ /opt/.cisco/certificates/ca
