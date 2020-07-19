@@ -11,7 +11,7 @@ fi
 
 vagrant ssh-config > .ssh_config_vagrant
 VMNAME=$(vagrant status --machine-readable | head -n 1 | awk -F, '{ print $2 }')
-ssh -F .ssh_config_vagrant $VMNAME "/vagrant/connect.sh up"
+ssh -F .ssh_config_vagrant "$VMNAME" "/vagrant/connect.sh up"
 
 echo "setting up traffic forwarding"
 ./forward.sh
