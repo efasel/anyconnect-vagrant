@@ -2,5 +2,6 @@
 *.iml
 *.pid
 .vagrant
+.vmname
 .ssh_config_vagrant
 vpnconfig

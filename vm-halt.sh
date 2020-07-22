@@ -12,6 +12,9 @@ VM_STATUS=$(vagrant status --machine-readable | grep ",state,"  | awk -F, '{prin
 if [ "$VM_STATUS" = "running" ]; then
   echo "halting VM"
   vagrant halt
+
+  rm .vmname
+  rm .ssh_config_vagrant
 else
   echo "VM not running"
 fi

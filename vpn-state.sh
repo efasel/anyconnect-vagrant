@@ -2,11 +2,18 @@
 
 set -euo pipefail
 
-vagrant ssh --command "/opt/cisco/anyconnect/bin/vpn -s state"
+if [ ! -f ".vmname" ]; then
+  echo "VM not running?"
+  exit 1
+fi
+
+source .vmname
+echo "VM:    $VMNAME"
+echo "VPN:   $(ssh -F .ssh_config_vagrant "$VMNAME" "/opt/cisco/anyconnect/bin/vpn state | grep -m 1 -o 'state:.*' | sed -e 's/state: //'")"
 
 SSHUTTLEPID=$(pgrep sshuttle || true)
 if [ -n "$SSHUTTLEPID" ]; then
-  echo "traffic is being forwarded (sshuttle is running, PID: $SSHUTTLEPID)"
+  echo "proxy: sshuttle is running, PID: $SSHUTTLEPID"
 else
-  echo "traffic is not being forwarded"
+  echo "proxy: sshuttle is not running"
 fi
