@@ -18,26 +18,11 @@ The usual steps you would take are the following:
 * Obtain the "Traps/Cortex" debian linux installer. Place in the file 'packages/cortex.deb' directory. 
 * The routes which forwarded through the VPN are currently hardcoded in `forward.sh`
 * Create a file `vpnconfig` which contains three lines:
-  1. VPN profile name
+  1. VPN hostname
   1. username
   1. password
 
-## initial usage
-
-This "initial usage" **should** be necessary only once!
-
-1. log in
-1. connect manually
-
-### log in
-
-`./vm-login.sh`
-
-### connect manually
-
-Start `/opt/cisco/anyconnect/bin/vpn` and then execute `connect {profile name}` 
-
-## normal usage
+## usage
 
 ### launch the VM, log in and stay logged in
 

@@ -63,7 +63,7 @@ verify_user_pass() {
     local VPN_PASSWORD="${3:-}"
 
     if [[ -z "$VPN_PROFILE" || -z "$VPN_USERNAME" || -z "$VPN_PASSWORD" ]]; then
-        echo "Error: you must provide VPN profile name, username and password as arguments!"
+        echo "Error: you must provide VPN hostname, username and password as arguments!"
         exit 1
     fi
 }
