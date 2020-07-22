@@ -73,7 +73,7 @@ Start `/opt/cisco/anyconnect/bin/vpn` and then execute `connect {profile name}`
 
 ### halt the VM
 
-`./vm-shutdown.sh`
+`./vm-halt.sh`
 
 * stop forwarding of the traffic
 * disconnects from the VPN
