@@ -17,3 +17,7 @@ fi
 
 source .vmname
 ssh -F .ssh_config_vagrant "$VMNAME" "/vagrant/connect.sh down"
+
+if [ $(which notify-send > /dev/null; echo $?) -eq 0 ]; then
+  notify-send -t 3000 -i call-stop "VPN status" "stopped forwarding traffic to VPN VM $VMNAME"
+fi
