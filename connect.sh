@@ -15,7 +15,7 @@ vpn_up() {
     local VPN_PASSWORD="$3"
 
     "$_CISCO_VPN" -s connect "$VPN_PROFILE" <<EOF
-1
+2
 $VPN_USERNAME
 $VPN_PASSWORD
 y
