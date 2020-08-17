@@ -44,6 +44,10 @@ This is due to the fact that we have to change state locally (forwarding) and on
 * establishes the VPN connection
 * forwards traffic through the VPN (will ask for root password to do this)
 
+If you get `bash: /opt/cisco/anyconnect/bin/vpn: No such file or directory` when you first try this, 
+the VM was not properly provisioned. Either try `/vagrant/install.sh` from within the VM, or just delete the VM 
+and start again.
+
 #### check VPN state
 
 `./vpn-state.sh`
