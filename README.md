@@ -55,6 +55,9 @@ and start again.
 * shows status of
   * VPN
   * forwarding
+  
+If you get `sshuttle is not running starting sshuttle` every time then try modifying the `forward.sh` to replace the 
+`--daemon` with an `&`. On MacOS the daemon tag simply made sshuttle exit silently on startup.
 
 #### disconnect from VPN
 
