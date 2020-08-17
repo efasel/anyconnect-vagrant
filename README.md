@@ -34,6 +34,9 @@ The usual steps you would take are the following:
 
 ### connect and disconnect as needed
 
+**The following scripts are meant to be executed on the host, not on the guest VM.**
+This is due to the fact that we have to change state locally (forwarding) and on the VM (VPN). 
+
 #### connect to VPN
 
 `./vpn-up.sh`
