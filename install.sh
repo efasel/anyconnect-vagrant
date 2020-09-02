@@ -12,7 +12,7 @@ apt-get --assume-yes ---purge remove alsa-topology-conf alsa-ucm-conf bolt byobu
 apt-get --assume-yes ---purge autoremove
 
 # Cortex
-apt install /vagrant/packages/cortex.deb
+dpkg -i /vagrant/packages/cortex.deb
 
 # AnyConnect
 mkdir -p ~/anyconnect
