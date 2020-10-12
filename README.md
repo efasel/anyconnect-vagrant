@@ -24,7 +24,30 @@ The usual steps you would take are the following:
 
 ## usage
 
-### launch the VM, log in and stay logged in
+### create some alias to simplify usage 
+
+    $ cat ~/.bashrc | grep -i vpn
+    #VPN
+    VPNDIR="~/git/anyconnect-vagrant"
+    alias vpn-vm-up="$VPNDIR/vm-login.sh"
+    alias vpn-up="$VPNDIR/vpn-up.sh && $VPNDIR/vpn-poll-state.sh"
+    alias vpn-vm-suspend="$VPNDIR/vm-suspend.sh"
+
+Then you can simply
+
+    vpn-vm-up
+   
+and in another shell
+
+    vpn-up
+
+and when you're done
+
+    alias vpn-vm-suspend
+
+### The following describes what happens in detail or how to call the scripts one by one.
+
+#### launch the VM, log in and stay logged in
 
 `./vm-login.sh`
 
@@ -32,12 +55,12 @@ The usual steps you would take are the following:
 * starts the VM if not running
 * log in
 
-### connect and disconnect as needed
+#### connect and disconnect as needed
 
 **The following scripts are meant to be executed on the host, not on the guest VM.**
 This is due to the fact that we have to change state locally (forwarding) and on the VM (VPN). 
 
-#### connect to VPN
+##### connect to VPN
 
 `./vpn-up.sh`
 
@@ -48,25 +71,45 @@ If you get `bash: /opt/cisco/anyconnect/bin/vpn: No such file or directory` when
 the VM was not properly provisioned. Either try `/vagrant/install.sh` from within the VM, or just delete the VM 
 and start again.
 
-#### check VPN state
+##### continuously check VPN state
+
+`./vpn-poll-state.sh`
+
+* shows status of
+  * VPN
+  * forwarding
+
+This polls the state every 60 seconds and terminates `sshuttle` (and thereby the DNS forwarding) if VPN connection is down.
+  
+If you get `sshuttle is not running starting sshuttle` every time then try modifying the `forward.sh` to replace the 
+`--daemon` with an `&`. On MacOS the daemon tag simply made `sshuttle` exit silently on startup.
+
+##### check VPN state
 
 `./vpn-state.sh`
 
 * shows status of
   * VPN
   * forwarding
-  
-If you get `sshuttle is not running starting sshuttle` every time then try modifying the `forward.sh` to replace the 
-`--daemon` with an `&`. On MacOS the daemon tag simply made sshuttle exit silently on startup.
 
-#### disconnect from VPN
+##### disconnect from VPN
 
 `./vpn-down.sh`
 
 * stop forwarding of the traffic
 * disconnects from the VPN
 
-### halt the VM
+#### suspend the VM
+
+`./vm-suspend.sh`
+
+* stop forwarding of the traffic
+* disconnects from the VPN
+* suspend the VM
+
+This is usually a bit faster than halting the VM, also during next start of the VM.
+
+#### halt the VM
 
 `./vm-halt.sh`
 
