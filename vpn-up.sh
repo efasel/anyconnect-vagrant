@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+# "Unofficial Bash Strict Mode"
+# see http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
+
+readonly BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$BASE_DIR"
 
 echo -n "checking if VM is running: "
 VM_STATUS=$(vagrant status --machine-readable | grep ",state,"  | awk -F, '{print $4}')

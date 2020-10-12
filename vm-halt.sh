@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+# "Unofficial Bash Strict Mode"
+# see http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
+
+readonly BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$BASE_DIR"
 
 if [ -f "sshuttle.pid" ]; then
   echo "Stopping running sshuttle instance with PID $(cat sshuttle.pid)"
@@ -17,7 +22,7 @@ if [ "$VM_STATUS" = "running" ]; then
   rm .vmname
   rm .ssh_config_vagrant
 
-  if [ $(which notify-send > /dev/null; echo $?) -eq 0 ]; then
+  if which notify-send > /dev/null; then
     notify-send -t 3000 -i call-stop "VPN status" "VPN VM $VMNAME is down"
   fi
 else
