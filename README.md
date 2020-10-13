@@ -158,6 +158,10 @@ The VM runs in VirtualBox. Download it here:
 **Ubuntu**: you need to compile your own up-to-date version of sshuttle and specify the path to that binary 
 in `forward.sh`
 
+### Python >= 3.5
+
+sshuttle requires Python >= 3.5 
+
 # Disclaimer
 
 This project is for informational use only. Do not use it to bypass your company procedures or security policies. 
