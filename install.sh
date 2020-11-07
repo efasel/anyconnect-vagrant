@@ -5,7 +5,7 @@ set -x
 
 # install packages we need
 apt-get update
-apt-get --assume-yes --no-install-recommends install ca-certificates network-manager libsecret-tools
+apt-get --assume-yes --no-install-recommends install ca-certificates network-manager libsecret-tools libgtk2.0-0
 
 # remove some packages we don't need
 apt-get --assume-yes ---purge remove alsa-topology-conf alsa-ucm-conf bolt byobu command-not-found cryptsetup cryptsetup-bin cryptsetup-initramfs cryptsetup-run dirmngr dosfstools eatmydata eject ftp fwupd fwupd-signed gdisk git git-man gnupg gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf gpgsm hdparm ltrace lvm2 lxd-agent-loader lz4 mawk mdadm mtr-tiny multipath-tools open-iscsi open-vm-tools os-prober parted patch popularity-contest rsync screen sg3-utils sg3-utils-udev sosreport sound-theme-freedesktop strace tcpdump telnet thin-provisioning-tools tmux whiptail wpasupplicant xauth xfsprogs xxd xz-utils zerofree
