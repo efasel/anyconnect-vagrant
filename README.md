@@ -19,8 +19,18 @@ The usual steps you would take are the following:
 * The routes which forwarded through the VPN are currently hardcoded in `forward.sh`
 * Create a file `vpnconfig` which contains three lines:
   1. VPN hostname
+  1. number of VPN group
   1. username
   1. password
+  
+  Example:
+    
+  
+    vpn.company.com
+    1
+    joe
+    joes-secret-password
+    
 
 ## usage
 
