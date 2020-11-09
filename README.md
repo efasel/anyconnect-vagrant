@@ -14,6 +14,8 @@ The usual steps you would take are the following:
 
 ## Configuration
 
+Steps:
+
 * Obtain the AnyConnect linux installer program. Place in the file 'packages/anyconnect.tar.gz'
 * Obtain the "Traps/Cortex" debian linux installer. Place in the file 'packages/cortex.deb' directory. 
 * The routes which forwarded through the VPN are currently hardcoded in `forward.sh`
@@ -23,9 +25,8 @@ The usual steps you would take are the following:
   1. username
   1. password
   
-  Example:
-    
-  
+Example for `vpnconfig`:
+
     vpn.company.com
     1
     joe
