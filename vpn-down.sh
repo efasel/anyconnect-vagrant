@@ -13,7 +13,11 @@ if [ ! -f ".vmname" ]; then
   exit 1
 fi
 
-SSHUTTLEPID=$(pgrep sshuttle)
+if [[ -f "$BASE_DIR/sshuttle.pid" ]]; then
+  SSHUTTLEPID=$(cat "$BASE_DIR/sshuttle.pid")
+else
+  SSHUTTLEPID=$(pgrep sshuttle)
+fi
 if [ -n "$SSHUTTLEPID" ]; then
   echo "Stopping running sshuttle instance with PID $SSHUTTLEPID"
   kill "$SSHUTTLEPID"
