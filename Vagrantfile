@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   # base box: Ubuntu 20.04 LTS (Focal Fossa)
   config.vm.box = "ubuntu/focal64"
 
-  vmhostname = "vpn-anyconnect" # derive the guest hostname from host's hostname
+  vmhostname = "vpn-anyconnect"
   config.vm.define vmhostname # name in Vagrant (instead of "default")
   config.vm.hostname = vmhostname # name of host inside the VM, i.e. `/etc/hostname`
 
