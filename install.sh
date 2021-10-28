@@ -28,3 +28,6 @@ cd ~/anyconnect/posture
 
 mv /opt/.cisco/certificates/ca /opt/.cisco/certificates/ca.orig
 ln -sf /etc/ssl/certs/ /opt/.cisco/certificates/ca
+
+# well…
+mkdir -p /opt/foil && touch /opt/foil/.breathe.txt
